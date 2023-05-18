@@ -48,7 +48,25 @@ namespace p9.Controllers
         // GET: Reparations/Create
         public IActionResult Create()
         {
-            ViewData["VoitureId"] = new SelectList(_context.Voitures, "Id", "Finition");
+            var typeInterv = new List<string>
+    {
+
+        "Selectionner un type de réparation",
+        "Climatisation",
+        "Moteur",
+        "Carrosserie",
+        "frein",
+        "allumage",
+        "Pneu",
+    };
+
+            ViewBag.TypeInterventions= new SelectList(typeInterv);
+
+            var voitures = _context.Voitures.ToList();
+            var selectList = new SelectList(voitures, "Id", "MarqueModeleFinition", "Modele");
+            ViewBag.VoituresList = selectList;
+
+            ViewData["VoitureId"] = new SelectList(_context.Voitures, "Id", "MarqueModeleFinition");
             return View();
         }
 

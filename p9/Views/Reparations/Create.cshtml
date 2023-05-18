@@ -18,11 +18,12 @@
                 <span asp-validation-for="DateReparation" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TypeIntervention" class="control-label"></label>
+                @*<label asp-for="TypeIntervention" class="control-label"></label>
                 <input asp-for="TypeIntervention" class="form-control" />
-                <span asp-validation-for="TypeIntervention" class="text-danger"></span>
+                <span asp-validation-for="TypeIntervention" class="text-danger"></span>*@
+                @Html.DropDownListFor(model => model.TypeIntervention, ViewBag.TypeInterventions as SelectList, "Sélectionner une reparation", new { @class = "form-control" })
             </div>
-            <div class="form-group">
+                <div class="form-group">
                 <label asp-for="CoutReparation" class="control-label"></label>
                 <input asp-for="CoutReparation" class="form-control" />
                 <span asp-validation-for="CoutReparation" class="text-danger"></span>

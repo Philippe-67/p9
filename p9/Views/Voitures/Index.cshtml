@@ -31,6 +31,12 @@
                 @Html.DisplayNameFor(model => model.PrixAchat)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Reparations)
+            </th>
+            <th>
+                Cout Reparations
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PrixVente)
             </th>
             <th>
@@ -41,12 +47,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomPhoto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CheminPhoto)
             </th>
             <th></th>
         </tr>
@@ -72,6 +72,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PrixAchat)
             </td>
+              
+                <td>
+                    @foreach (var rep in item.Reparations)
+                    {
+                        <p> @rep.TypeIntervention </p>
+                    }
+                </td>
+                <td>
+                    @foreach (var coutRep in item.Reparations)
+                    {
+                        <p> @coutRep.CoutReparation </p>
+                    }
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PrixVente)
             </td>
@@ -83,12 +96,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomPhoto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheminPhoto)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

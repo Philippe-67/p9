@@ -22,11 +22,14 @@ namespace p9.Controllers
         // GET: Voitures
         public async Task<IActionResult> Index()
         {
-              return _context.Voitures != null ? 
-                          View(await _context.Voitures.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Voitures'  is null.");
-        }
-
+            // return _context.Voitures != null ?
+            var infoReparationVoiture =
+                    View(await _context.Voitures
+                    .Include(v => v.Reparations)
+                    .ToListAsync());
+        return (infoReparationVoiture);
+            //
+        }                
         // GET: Voitures/Details/5
         public async Task<IActionResult> Details(int? id)
         {
