@@ -37,6 +37,9 @@
                 Cout Reparations
             </th>
             <th>
+                Total Reparations
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PrixVente)
             </th>
             <th>
@@ -71,6 +74,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PrixAchat)
+                
             </td>
               
                 <td>
@@ -85,9 +89,23 @@
                         <p> @coutRep.CoutReparation </p>
                     }
                 </td>
+                <td>
+                    @{
+                    float totalCoutReparation = 0;
+                    foreach (var rep in item.Reparations)
+                    {
+                        totalCoutReparation += rep.CoutReparation;
+                    }
+                    }
+                    <p> @totalCoutReparation </p>
+                </td>
+               
             <td>
-                @Html.DisplayFor(modelItem => item.PrixVente)
+                @*Html.DisplayFor(modelItem => item.PrixVente)
+                *@
+                    @(item.Reparations.Sum(s => s.CoutReparation) + item.PrixAchat + 500)
             </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.DateVente)
             </td>

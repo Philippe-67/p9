@@ -29,7 +29,7 @@ namespace p9.Models
         public DateTime DateAchat { get; set; }
         [DataType(DataType.Currency)]
         [DisplayName("Prix d'achat")]
-        public float? PrixAchat { get; set; }
+        public float ?PrixAchat { get; set; }
         [DataType(DataType.Currency)]
         [DisplayName("Prix de vente")]
         public float? PrixVente { get; set; }

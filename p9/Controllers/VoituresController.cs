@@ -27,7 +27,8 @@ namespace p9.Controllers
                     View(await _context.Voitures
                     .Include(v => v.Reparations)
                     .ToListAsync());
-        return (infoReparationVoiture);
+
+            return (infoReparationVoiture);
             //
         }                
         // GET: Voitures/Details/5
