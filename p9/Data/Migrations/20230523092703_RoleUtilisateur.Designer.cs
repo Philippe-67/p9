@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using p9.Data;
 
@@ -11,9 +12,11 @@ using p9.Data;
 namespace p9.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230523092703_RoleUtilisateur")]
+    partial class RoleUtilisateur
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,12 +264,15 @@ namespace p9.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pw")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -321,12 +327,13 @@ namespace p9.Data.Migrations
                     b.Property<float?>("PrixVente")
                         .HasColumnType("real");
 
-                    b.Property<int?>("UtilisateurId")
+                    b.Property<int>("UtilisateurId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UtilisateurId");
+                    b.HasIndex("UtilisateurId")
+                        .IsUnique();
 
                     b.ToTable("Voitures");
                 });
@@ -396,15 +403,18 @@ namespace p9.Data.Migrations
             modelBuilder.Entity("p9.Models.Voiture", b =>
                 {
                     b.HasOne("p9.Models.Utilisateur", "Utilisateur")
-                        .WithMany("Voitures")
-                        .HasForeignKey("UtilisateurId");
+                        .WithOne("Voiture")
+                        .HasForeignKey("p9.Models.Voiture", "UtilisateurId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Utilisateur");
                 });
 
             modelBuilder.Entity("p9.Models.Utilisateur", b =>
                 {
-                    b.Navigation("Voitures");
+                    b.Navigation("Voiture")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("p9.Models.Voiture", b =>
