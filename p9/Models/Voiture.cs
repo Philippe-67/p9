@@ -10,6 +10,7 @@ namespace p9.Models
         [Key]
         [DisplayName("Code VIN")]
         public int Id { get; set; }
+        public int UtilisateurId { get; set; }
         [Required]
         [Range(1990, int.MaxValue)]
         [DisplayName("Année")]
@@ -45,6 +46,10 @@ namespace p9.Models
         public IFormFile? Photo { get; set; }
         public ICollection<Reparation>? Reparations { get; set; }
 
-        
+       
+        public Utilisateur Utilisateur { get; set; }
+
+
+
     }
 }

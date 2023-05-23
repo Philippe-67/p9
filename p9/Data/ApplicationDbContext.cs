@@ -14,5 +14,6 @@ namespace p9.Data
         }
         public DbSet <Voiture>Voitures { get; set; }
         public DbSet <Reparation> Reparations{ get; set; }
-        }
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
+    }
     }

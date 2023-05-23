@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using p9.Data;
+using System.Net;
+using System.Security.Claims;
 
 namespace p9
 {
@@ -17,6 +19,7 @@ namespace p9
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>() // Ajout de la prise en charge des rôles
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
@@ -39,7 +42,44 @@ namespace p9
 
             app.UseRouting();
 
+            app.UseAuthentication();//ajout du middleware d'authentification
+            
+           app.Use(async (context, next) =>
+           {
+               var userManager = context.RequestServices.GetRequiredService<UserManager<IdentityUser>>();
+               var signInManager = context.RequestServices.GetRequiredService<SignInManager<IdentityUser>>();
+
+               var user = await userManager.FindByEmailAsync("jacques@gmail.com");
+
+               if (user != null && await userManager.IsInRoleAsync(user, "Administrateur"))
+               {
+                   var result = await signInManager.PasswordSignInAsync(user, "Voir123!", false, lockoutOnFailure: false);
+
+                   if (result.Succeeded)
+                   {
+                       // Créer un claims principal pour l'utilisateur authentifié
+                       var principal = await signInManager.CreateUserPrincipalAsync(user);
+
+                       // Ajouter le rôle d'administrateur aux claims de l'utilisateur
+                       ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(ClaimTypes.Role, "Administrateur"));
+
+                       // Attribuer le claims principal à la requête
+                       context.User = principal;
+                   }
+               }
+
+               await next.Invoke();
+           });
+           
+
             app.UseAuthorization();
+
+            // Appel pour initialiser les rôles
+            using (var scope = app.Services.CreateScope())
+            {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                RolesInitializer.InitializeAsync(roleManager).Wait();
+            }
 
             app.MapControllerRoute(
                 name: "default",
