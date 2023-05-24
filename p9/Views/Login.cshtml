@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model LoginModel
+
+<h1>Connexion</h1>
+
+@if (Model.ShowInvalidCredentialsMessage)
+{
+    <div class="alert alert-danger">Identifiants invalides. Veuillez réessayer.</div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input type="email" class="form-control" id="email" name="Email" value="@Model.Email" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" name="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+</form>
