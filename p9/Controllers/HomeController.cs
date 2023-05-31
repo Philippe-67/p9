@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using p9.Models;
 using System.Diagnostics;
 
 namespace p9.Controllers
-{
+{ 
+
+
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+   
+    private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -17,7 +21,8 @@ namespace p9.Controllers
         {
             return View();
         }
-
+        
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

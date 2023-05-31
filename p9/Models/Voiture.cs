@@ -49,7 +49,7 @@ namespace p9.Models
         public ICollection<Reparation>? Reparations { get; set; }
 
        
-        public Utilisateur ?Utilisateur { get; set; }
+        
 
 
 

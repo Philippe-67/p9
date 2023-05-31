@@ -14,21 +14,17 @@ namespace p9.Data
         }
         public DbSet<Voiture> Voitures { get; set; }
         public DbSet<Reparation> Reparations { get; set; }
-        public DbSet<Utilisateur> Utilisateurs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Voiture>()
-                .HasOne(v => v.Utilisateur)
-                .WithMany(u => u.Voitures)
-                .HasForeignKey(v => v.UtilisateurId);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Reparation>()
                 .HasOne(r => r.Voiture)
                 .WithMany(v => v.Reparations)
                 .HasForeignKey(r => r.VoitureId);
 
-            base.OnModelCreating(modelBuilder);
+           // base.OnModelCreating(modelBuilder);
         }
     }
 }

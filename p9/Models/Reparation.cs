@@ -39,10 +39,5 @@ namespace p9.Models
 
         public Voiture? Voiture { get; set; }
 
-
-
-
-
-
     }
 }
