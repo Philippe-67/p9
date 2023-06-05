@@ -14,6 +14,7 @@ namespace p9.Controllers
             _roleManager = roleManager;
         }
        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
 
         {
@@ -21,11 +22,13 @@ namespace p9.Controllers
             return View(roles);
         }
         //[Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult CreateRole()
         {
             return View(new IdentityRole());
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateRole(IdentityRole role)
         {

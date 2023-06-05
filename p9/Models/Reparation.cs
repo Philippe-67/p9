@@ -5,12 +5,7 @@ namespace p9.Models
 {
     public class Reparation
     {
-
-
-
         [Key]
-
-
         public int Id { get; set; }
 
         [Required]

@@ -23,6 +23,7 @@ namespace p9.Controllers
         }
         
         [Authorize]
+   
         public IActionResult Privacy()
         {
             return View();

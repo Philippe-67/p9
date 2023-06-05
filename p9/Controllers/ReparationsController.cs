@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using p9.Data;
+using p9.Data.Migrations;
 using p9.Models;
 
 namespace p9.Controllers
@@ -44,7 +46,7 @@ namespace p9.Controllers
 
             return View(reparation);
         }
-
+        [Authorize (Roles= "Admin")]
         // GET: Reparations/Create
         public IActionResult Create()
         {
@@ -73,6 +75,7 @@ namespace p9.Controllers
         // POST: Reparations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,DateReparation,TypeIntervention,CoutReparation,VoitureId")] Reparation reparation)

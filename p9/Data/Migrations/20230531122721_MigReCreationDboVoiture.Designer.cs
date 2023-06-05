@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using p9.Data;
 
@@ -11,9 +12,11 @@ using p9.Data;
 namespace p9.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230531122721_MigReCreationDboVoiture")]
+    partial class MigReCreationDboVoiture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,6 +266,9 @@ namespace p9.Data.Migrations
                     b.Property<int>("Annee")
                         .HasColumnType("int");
 
+                    b.Property<string>("CheminPhoto")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateAchat")
                         .HasColumnType("datetime2");
 
@@ -285,6 +291,9 @@ namespace p9.Data.Migrations
 
                     b.Property<string>("Modele")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomPhoto")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float?>("PrixAchat")

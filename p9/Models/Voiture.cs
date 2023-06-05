@@ -10,9 +10,9 @@ namespace p9.Models
         [Key]
         [DisplayName("Code VIN")]
         public int Id { get; set; }
-        [Required]
-        [DisplayName("Idenditifant User")]
-        public int? UtilisateurId { get; set; }
+        //[Required]
+        //[DisplayName("Idenditifant User")]
+        //public int? UtilisateurId { get; set; }
         [Required]
         [Range(1990, int.MaxValue)]
         [DisplayName("Année")]
@@ -42,16 +42,9 @@ namespace p9.Models
         [DisplayName("Véhicule disponible")]
         public bool EstDisponible { get; set; }
         public string? Description { get; set; }
-        public string? NomPhoto { get; set; }
-        public string? CheminPhoto { get; set; }
-        [NotMapped]
-        public IFormFile? Photo { get; set; }
+      
         public ICollection<Reparation>? Reparations { get; set; }
-
        
-        
-
-
 
     }
 }
