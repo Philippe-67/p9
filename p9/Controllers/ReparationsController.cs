@@ -22,6 +22,7 @@ namespace p9.Controllers
         }
 
         // GET: Reparations
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Reparations.Include(r => r.Voiture);
@@ -29,6 +30,7 @@ namespace p9.Controllers
         }
 
         // GET: Reparations/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Reparations == null)
@@ -48,6 +50,7 @@ namespace p9.Controllers
         }
         [Authorize (Roles= "Admin")]
         // GET: Reparations/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             var typeInterv = new List<string>
@@ -91,6 +94,7 @@ namespace p9.Controllers
         }
 
         // GET: Reparations/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Reparations == null)
@@ -110,6 +114,7 @@ namespace p9.Controllers
         // POST: Reparations/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,DateReparation,TypeIntervention,CoutReparation,VoitureId")] Reparation reparation)
@@ -142,7 +147,7 @@ namespace p9.Controllers
             ViewData["VoitureId"] = new SelectList(_context.Voitures, "Id", "Finition", reparation.VoitureId);
             return View(reparation);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Reparations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -161,7 +166,7 @@ namespace p9.Controllers
 
             return View(reparation);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Reparations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

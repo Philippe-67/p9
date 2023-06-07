@@ -32,19 +32,19 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        <li class="nav-item">
+                       @* <li class="nav-item">
 
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li>*@
                          @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Manage roles</a>
-                            </li>
-                        }
+                            </li>*@
 
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Voitures
                             </button>
                        
@@ -67,8 +67,26 @@
                                     <li><a class="nav-link text-dark" asp-area="" asp-controller="Reparations" asp-action="Create">Ajouter une Réparations</a></li>
 
                                 </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                         <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Voitures
+                            </button>
+                       
+                        <ul class="dropdown-menu">
+                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Voitures" asp-action="Index">Voir les voitures</a></li>
+                        </ul>
+                          </div>
+                          </li>
+                          }
+                </div>
 
                     </ul>
+                    
                     <partial name="_LoginPartial" />
                 </div>
             </div>

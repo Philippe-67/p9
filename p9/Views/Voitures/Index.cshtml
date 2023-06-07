@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<p9.Models.Voiture>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
 
 @{
     ViewData["Title"] = "Index";
@@ -27,21 +29,25 @@
             <th>
                 @Html.DisplayNameFor(model => model.Finition)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAchat)
+            @if (User.Identity.IsAuthenticated && userManager.IsInRoleAsync(await userManager.GetUserAsync(User), "Admin").Result)
+
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.DateAchat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PrixAchat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reparations)
+                </th>
+                <th>
+                    Cout Reparations
+                </th>
+                <th>
+                    Total Reparations
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrixAchat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Reparations)
-            </th>
-            <th>
-                Cout Reparations
-            </th>
-            <th>
-                Total Reparations
-            </th>
+            }
             <th>
                 @Html.DisplayNameFor(model => model.PrixVente)
             </th>
@@ -75,36 +81,39 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Finition)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateAchat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrixAchat)
-                
-            </td>
-              
-                <td>
-                    @foreach (var rep in item.Reparations)
-                    {
-                        <p> @rep.TypeIntervention </p>
-                    }
+             @if (User.Identity.IsAuthenticated && userManager.IsInRoleAsync(await userManager.GetUserAsync(User), "Admin").Result)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateAchat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrixAchat)
+
+                    </td>
+
+                    <td>
+                        @foreach (var rep in item.Reparations)
+                        {
+                            <p> @rep.TypeIntervention </p>
+                        }
+                    </td>
+                    <td>
+                        @foreach (var coutRep in item.Reparations)
+                        {
+                            <p> @coutRep.CoutReparation </p>
+                        }
+                    </td>
+                    <td>
+                        @{
+                            float totalCoutReparation = 0;
+                            foreach (var rep in item.Reparations)
+                            {
+                                totalCoutReparation += rep.CoutReparation;
+                            }
+                        }
+                        <p> @totalCoutReparation </p>
                 </td>
-                <td>
-                    @foreach (var coutRep in item.Reparations)
-                    {
-                        <p> @coutRep.CoutReparation </p>
-                    }
-                </td>
-                <td>
-                    @{
-                    float totalCoutReparation = 0;
-                    foreach (var rep in item.Reparations)
-                    {
-                        totalCoutReparation += rep.CoutReparation;
-                    }
-                    }
-                    <p> @totalCoutReparation </p>
-                </td>
+                }
                
             <td>
                 @*Html.DisplayFor(modelItem => item.PrixVente)
@@ -121,12 +130,24 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+                @if (User.Identity.IsAuthenticated && userManager.IsInRoleAsync(await userManager.GetUserAsync(User), "Admin").Result)
+
+                {
             <td>
+
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+                   </td>
+                }
+                else
+                {
+                    <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                }
+                
+            </tr>
 }
     </tbody>
 </table>

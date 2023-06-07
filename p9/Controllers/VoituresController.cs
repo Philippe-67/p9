@@ -8,7 +8,7 @@ using p9.Models;
 
 namespace p9.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class VoituresController : Controller
     {
         
@@ -95,6 +95,7 @@ namespace p9.Controllers
         // POST: Voitures/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Annee,Marque,Modele,Finition,DateAchat,PrixAchat,PrixVente,DateVente,EstDisponible,Description,NomPhoto,CheminPhoto")] Voiture voiture)
@@ -126,7 +127,7 @@ namespace p9.Controllers
             }
             return View(voiture);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Voitures/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -144,7 +145,7 @@ namespace p9.Controllers
 
             return View(voiture);
         }
-
+        [Authorize(Roles ="Admin")]
         // POST: Voitures/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
