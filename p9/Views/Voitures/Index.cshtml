@@ -3,7 +3,7 @@
 @inject UserManager<IdentityUser> userManager
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Liste de nos Voitures";
 }
 
 <h1>Index</h1>
@@ -128,7 +128,7 @@
                 @Html.DisplayFor(modelItem => item.EstDisponible)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                    <label class="alert-danger">@Html.DisplayFor(modelItem => item.Description)</label>
             </td>
                 @if (User.Identity.IsAuthenticated && userManager.IsInRoleAsync(await userManager.GetUserAsync(User), "Admin").Result)
 

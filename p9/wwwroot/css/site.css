@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media (min-width: 768px) {
@@ -14,6 +14,7 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    opacity:0.85;
     color: #4E6E81;
 }
 
@@ -29,4 +30,8 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+td {
+    color: aqua;
 }

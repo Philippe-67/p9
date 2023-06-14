@@ -1,4 +1,7 @@
 ﻿@model p9.Models.Voiture
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
+
 
 @{
     ViewData["Title"] = "Details";
@@ -49,8 +52,12 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PrixVente)
         </dt>
+@**@
+            
+
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PrixVente)
+           @Html.DisplayFor(model => model.PrixVente)
+          @* @(item.Reparations.Sum(s => s.CoutReparation) + item.PrixAchat + 500)*@
          
         </dd>
         <dt class = "col-sm-2">
