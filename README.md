@@ -1,4 +1,4 @@
-# Projet Express Voiture
+# Projet Express Voitures
 
 Ce projet est une application codée en C# utilisant Entity Framework Core, avec une base de données réalisée en Code First. La société Express Voiture achète des voitures aux enchères, les répare et les revend avec un bénéfice de 500€. L'application permet à tous les utilisateurs d'accéder aux informations, mais seuls l'administrateur Jacques est autorisés à effectuer des modifications.
 
