@@ -50,8 +50,7 @@ namespace p9.Controllers
         }
         [Authorize (Roles= "Admin")]
         // GET: Reparations/Create
-        [Authorize(Roles = "Admin")]
-        public IActionResult Create()
+                public IActionResult Create()
         {
             var typeInterv = new List<string>
     {

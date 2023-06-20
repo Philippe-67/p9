@@ -14,8 +14,10 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    opacity:0.85;
-    color: #4E6E81;
+    opacity: 0.85;
+    /*color: #4E6E81;*/
+    color: aqua;
+
 }
 
 

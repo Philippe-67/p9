@@ -6,11 +6,13 @@
     ViewData["Title"] = "Liste de nos Voitures";
 }
 
-<h1>Index</h1>
-
+<h1>Nos Voitures</h1>
+@if (User.Identity.IsAuthenticated && userManager.IsInRoleAsync(await userManager.GetUserAsync(User), "Admin").Result)
+{
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+}
 <table class="table">
     <thead>
         <tr>
