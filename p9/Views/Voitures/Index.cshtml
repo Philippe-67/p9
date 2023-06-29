@@ -102,7 +102,7 @@
                     <td>
                         @foreach (var coutRep in item.Reparations)
                         {
-                            <p> @coutRep.CoutReparation </p>
+                            <p> @coutRep.CoutReparation € </p>
                         }
                     </td>
                     <td>
@@ -113,14 +113,14 @@
                                 totalCoutReparation += rep.CoutReparation;
                             }
                         }
-                        <p> @totalCoutReparation </p>
+                        <p> @totalCoutReparation €</p>
                 </td>
                 }
                
             <td>
                 @*Html.DisplayFor(modelItem => item.PrixVente)
                 *@
-                    @(item.Reparations.Sum(s => s.CoutReparation) + item.PrixAchat + 500)
+                    @(item.Reparations.Sum(s => s.CoutReparation) + item.PrixAchat + 500+"€" )
             </td>
             
             <td>

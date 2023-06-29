@@ -25,9 +25,7 @@ namespace p9.Models
         [Required]
 
         [DataType(DataType.Currency)]
-
         [DisplayName("Coût des réparations")]
-
         public float CoutReparation { get; set; }
 
         public int VoitureId { get; set; }
