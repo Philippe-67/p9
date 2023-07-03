@@ -16,10 +16,7 @@
 <table class="table">
     <thead>
         <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.UtilisateurId)
-            </th>*@
-            <th>
+                        <th>
                 @Html.DisplayNameFor(model => model.Annee)
             </th>
             <th>
@@ -68,9 +65,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-          @*  <td>
-                @Html.DisplayFor(modelItem => item.UtilisateurId)
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Annee)
             </td>
@@ -81,7 +75,7 @@
                 @Html.DisplayFor(modelItem => item.Modele)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Finition)
+                    @Html.DisplayFor(modelItem => item.MarqueModeleFinition)
             </td>
              @if (User.Identity.IsAuthenticated && userManager.IsInRoleAsync(await userManager.GetUserAsync(User), "Admin").Result)
                 {

@@ -64,7 +64,7 @@ namespace p9.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Annee,Marque,Modele,Finition,DateAchat,PrixAchat,PrixVente,DateVente,EstDisponible,Description")] Voiture voiture)
+        public async Task<IActionResult> Create([Bind("Id,Annee,Marque,Modele,Finition,MarqueModeleFinition,DateAchat,PrixAchat,PrixVente,DateVente,EstDisponible,Description")] Voiture voiture)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace p9.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Annee,Marque,Modele,Finition,DateAchat,PrixAchat,PrixVente,DateVente,EstDisponible,Description,NomPhoto,CheminPhoto")] Voiture voiture)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Annee,Marque,Modele,Finition,MarqueModeleFinition,DateAchat,PrixAchat,PrixVente,DateVente,EstDisponible,Description,NomPhoto,CheminPhoto")] Voiture voiture)
         {
             if (id != voiture.Id)
             {

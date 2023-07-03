@@ -1,4 +1,5 @@
-﻿@model p9.Models.Voiture
+﻿
+@model p9.Models.Voiture
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<IdentityUser> userManager
 
@@ -36,6 +37,7 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Finition)
+            
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DateAchat)
@@ -52,12 +54,12 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PrixVente)
         </dt>
-@**@
+
             
 
         <dd class = "col-sm-10">
            @Html.DisplayFor(model => model.PrixVente)
-          @* @(item.Reparations.Sum(s => s.CoutReparation) + item.PrixAchat + 500)*@
+            @*(item.Reparations.Sum(s => s.CoutReparation) + item.PrixAchat + 500);*@
          
         </dd>
         <dt class = "col-sm-2">
@@ -78,19 +80,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
-      @*  <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomPhoto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomPhoto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CheminPhoto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CheminPhoto)
-        </dd>*@
-    </dl>
+     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
