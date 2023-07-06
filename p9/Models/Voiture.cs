@@ -5,14 +5,16 @@ using System.ComponentModel;
 namespace p9.Models
 {
     public class Voiture
-    {
+    { public Voiture()
+        {
+            Reparations = new List<Reparation>();
+    }
+    
         
         [Key]
         [DisplayName("Code VIN")]
         public int Id { get; set; }
-        //[Required]
-        //[DisplayName("Idenditifant User")]
-        //public int? UtilisateurId { get; set; }
+       
         [Required]
         [Range(1990, int.MaxValue)]
         [DisplayName("Année")]

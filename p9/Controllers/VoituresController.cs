@@ -39,7 +39,7 @@ namespace p9.Controllers
                 return NotFound();
             }
 
-            var voiture = await _context.Voitures
+            var voiture = await _context.Voitures.Include(v => v.Reparations)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (voiture == null)
             {
