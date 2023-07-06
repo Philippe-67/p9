@@ -33,14 +33,7 @@ namespace p9.Controllers
                 var voituresDisponibles = _context.Voitures.Where(v => v.EstDisponible).ToList();
                 return View(voituresDisponibles);
             }
-            //// return _context.Voitures != null ?
-            //var infoReparationVoiture =
-            //        View(await _context.Voitures
-            //        .Include(v => v.Reparations)
-            //        .ToListAsync());
-
-            //return (infoReparationVoiture);
-            ////
+           
         }                
         // GET: Voitures/Details/5
         public async Task<IActionResult> Details(int? id)
