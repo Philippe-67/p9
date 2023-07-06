@@ -22,14 +22,25 @@ namespace p9.Controllers
         // GET: Voitures
         public async Task<IActionResult> Index()
         {
-            // return _context.Voitures != null ?
-            var infoReparationVoiture =
-                    View(await _context.Voitures
-                    .Include(v => v.Reparations)
-                    .ToListAsync());
+            // Affiche toutes les voitures pour l'admin, sinon affiche uniquement les voitures disponibles à la vente
+            if (User.IsInRole("Admin"))
+            {
+                var voitures = _context.Voitures.Include(v => v.Reparations).ToList();
+                return View(voitures);
+            }
+            else
+            {
+                var voituresDisponibles = _context.Voitures.Where(v => v.EstDisponible).ToList();
+                return View(voituresDisponibles);
+            }
+            //// return _context.Voitures != null ?
+            //var infoReparationVoiture =
+            //        View(await _context.Voitures
+            //        .Include(v => v.Reparations)
+            //        .ToListAsync());
 
-            return (infoReparationVoiture);
-            //
+            //return (infoReparationVoiture);
+            ////
         }                
         // GET: Voitures/Details/5
         public async Task<IActionResult> Details(int? id)

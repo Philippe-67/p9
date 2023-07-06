@@ -75,7 +75,8 @@
                 @Html.DisplayFor(modelItem => item.Modele)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.MarqueModeleFinition)
+                    @Html.DisplayFor(modelItem => item.Finition)
+                    @*@Html.DisplayFor(modelItem => item.MarqueModeleFinition)*@
             </td>
              @if (User.Identity.IsAuthenticated && userManager.IsInRoleAsync(await userManager.GetUserAsync(User), "Admin").Result)
                 {
